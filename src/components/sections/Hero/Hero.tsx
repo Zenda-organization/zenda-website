@@ -7,11 +7,27 @@ import { HeroStats } from "./HeroStats";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden py-28">
+    <section className="relative overflow-hidden">
       <HeroBackground />
 
       <ZContainer>
-        <div className="grid items-center gap-20 lg:grid-cols-2">
+        <div
+          className="
+            grid
+            items-center
+            gap-12
+            pt-28
+            pb-12
+
+            sm:gap-16
+            sm:pt-32
+
+            lg:grid-cols-2
+            lg:gap-12
+            lg:pt-36
+            lg:pb-16
+          "
+        >
           <HeroContent />
 
           <HeroImage />
