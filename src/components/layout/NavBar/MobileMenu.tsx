@@ -5,17 +5,14 @@ import { ZButton } from "@/components/common/ZButton";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 import { navigation } from "./navigation";
-
 import { NavigationItem } from "./NavigationItem";
 
 export function MobileMenu() {
   return (
     <div className="lg:hidden">
       <Sheet>
-        <SheetTrigger asChild>
-          <ZButton variant="ghost" size="icon">
-            <Menu />
-          </ZButton>
+        <SheetTrigger render={<ZButton variant="ghost" size="icon" aria-label="Abrir menu" />}>
+          <Menu size={22} strokeWidth={2} />
         </SheetTrigger>
 
         <SheetContent side="right">

@@ -1,10 +1,19 @@
 import { ArrowRight, Sparkles } from "lucide-react";
+import { motion } from "motion/react";
 
 import { ZButton } from "@/components/common/ZButton";
 
 export function HeroContent() {
   return (
-    <div className="relative z-10 max-w-2xl">
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.7,
+        ease: "easeOut",
+      }}
+      className="relative z-10 max-w-2xl"
+    >
       {/* Badge */}
       <div
         className="
@@ -95,6 +104,6 @@ export function HeroContent() {
           Conhecer a Zenda
         </ZButton>
       </div>
-    </div>
+    </motion.div>
   );
 }

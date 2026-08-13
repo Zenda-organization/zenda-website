@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { NavigationItem as NavigationItemType } from "./Navbar.types";
+
+import type { NavigationItem as NavigationItemType } from "./Navbar.types";
 
 interface Props {
   item: NavigationItemType;
@@ -13,11 +14,11 @@ export function NavigationItem({ item, onClick }: Props) {
       onClick={onClick}
       className={({ isActive }) =>
         `
-        transition-colors
-        duration-300
-        font-medium
-        ${isActive ? "text-primary" : "text-slate-700 hover:text-primary"}
-      `
+          font-medium
+          transition-colors
+          duration-300
+          ${isActive ? "text-primary" : "text-slate-700 hover:text-primary"}
+        `
       }
     >
       {item.label}

@@ -1,17 +1,20 @@
 import { Outlet } from "react-router-dom";
 
-import { Navbar } from "@/components/layout/Navbar";
+import { Navbar } from "@/components/layout/NavBar";
+import { ZFooter } from "@/components/common/ZFooter";
 
-export default function MainLayout() {
+export function MainLayout() {
   return (
-    <>
+    <div className="min-h-screen bg-white">
       <Navbar />
 
-      <main className="pt-20">
+      <main>
         <Outlet />
       </main>
 
-      {/* Footer virá mais tarde */}
-    </>
+      <ZFooter />
+    </div>
   );
 }
+
+export default MainLayout;

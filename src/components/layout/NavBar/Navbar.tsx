@@ -15,9 +15,8 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-
-        isScrolled ? "bg-white/80 backdrop-blur-xl shadow-sm" : "bg-transparent",
+        "fixed left-0 right-0 top-0 z-50 transition-all duration-300",
+        isScrolled ? "bg-white/80 shadow-sm backdrop-blur-xl" : "bg-transparent",
       )}
     >
       <ZContainer>

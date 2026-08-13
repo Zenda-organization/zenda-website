@@ -18,7 +18,10 @@ export function FloatingBadge({
 }: FloatingBadgeProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.85 }}
+      initial={{
+        opacity: 0,
+        scale: 0.85,
+      }}
       animate={{
         opacity: 1,
         scale: 1,
@@ -57,9 +60,7 @@ export function FloatingBadge({
         ${className}
       `}
     >
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50">
-        {icon}
-      </div>
+      {icon}
 
       <div>
         <p className="text-sm font-semibold text-slate-900">{title}</p>
