@@ -1,6 +1,10 @@
 import { ArrowRight, Compass, Hammer, Lightbulb, Rocket } from "lucide-react";
 
+import { motion, useReducedMotion } from "motion/react";
+
 import { ZContainer } from "@/components/common/ZContainer";
+
+import { slideUp, staggerContainer, staggerItem } from "@/animations";
 
 const steps = [
   {
@@ -34,11 +38,20 @@ const steps = [
 ];
 
 export function AboutProcess() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="py-20 sm:py-24 lg:py-28">
       <ZContainer>
         {/* Cabeçalho */}
-        <div
+        <motion.div
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView={shouldReduceMotion ? undefined : "visible"}
+          viewport={{
+            once: true,
+            amount: 0.2,
+          }}
+          variants={slideUp}
           className="
             grid
             gap-8
@@ -97,10 +110,10 @@ export function AboutProcess() {
             soluções digitais práticas, escaláveis e preparadas para acompanhar o crescimento da
             empresa.
           </p>
-        </div>
+        </motion.div>
 
         {/* Processo */}
-        <div
+        <motion.div
           className="
             mt-14
             grid
@@ -110,31 +123,39 @@ export function AboutProcess() {
 
             lg:grid-cols-4
           "
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView={shouldReduceMotion ? undefined : "visible"}
+          viewport={{
+            once: true,
+            amount: 0.1,
+          }}
+          variants={staggerContainer}
         >
           {steps.map((step, index) => {
             const Icon = step.icon;
             const isLast = index === steps.length - 1;
 
             return (
-              <div
+              <motion.div
                 key={step.number}
+                variants={staggerItem}
                 className="
-                    group
-                    relative
-                    border-t
-                    border-slate-200
-                    py-8
-                    md:px-6
-                    md:first:pl-0
+                  group
+                  relative
+                  border-t
+                  border-slate-200
+                  py-8
+                  md:px-6
+                  md:first:pl-0
 
-                    lg:border-l
-                    lg:border-t-0
-                    lg:px-7
-                    lg:py-0
-                    lg:first:border-l-0
-                    lg:first:pl-0
-                    lg:last:pr-0
-                    "
+                  lg:border-l
+                  lg:border-t-0
+                  lg:px-7
+                  lg:py-0
+                  lg:first:border-l-0
+                  lg:first:pl-0
+                  lg:last:pr-0
+                "
               >
                 {/* Número */}
                 <div className="flex items-center justify-between">
@@ -203,10 +224,10 @@ export function AboutProcess() {
                     "
                   />
                 )}
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </ZContainer>
     </section>
   );

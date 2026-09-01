@@ -1,13 +1,18 @@
 import { ArrowRight, MessageCircle } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { ZButton } from "@/components/common/ZButton";
 import { ZContainer } from "@/components/common/ZContainer";
 
+import { fadeIn, slideUp } from "@/animations";
+
 export function AboutCTA() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="py-20 sm:py-24 lg:py-28">
       <ZContainer>
-        <div
+        <motion.div
           className="
             relative
             overflow-hidden
@@ -22,6 +27,13 @@ export function AboutCTA() {
             lg:px-16
             lg:py-20
           "
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView={shouldReduceMotion ? undefined : "visible"}
+          viewport={{
+            once: true,
+            amount: 0.2,
+          }}
+          variants={fadeIn}
         >
           {/* Elementos decorativos */}
           <div
@@ -63,7 +75,14 @@ export function AboutCTA() {
             "
           >
             {/* Ícone */}
-            <div
+            <motion.div
+              initial={shouldReduceMotion ? false : "hidden"}
+              whileInView={shouldReduceMotion ? undefined : "visible"}
+              viewport={{
+                once: true,
+                amount: 0.3,
+              }}
+              variants={fadeIn}
               className="
                 mx-auto
                 flex
@@ -77,10 +96,17 @@ export function AboutCTA() {
               "
             >
               <MessageCircle size={21} />
-            </div>
+            </motion.div>
 
             {/* Título */}
-            <h2
+            <motion.h2
+              initial={shouldReduceMotion ? false : "hidden"}
+              whileInView={shouldReduceMotion ? undefined : "visible"}
+              viewport={{
+                once: true,
+                amount: 0.3,
+              }}
+              variants={slideUp}
               className="
                 mt-6
                 text-3xl
@@ -97,10 +123,20 @@ export function AboutCTA() {
               Tem um desafio?
               <br />
               Vamos construir a solução.
-            </h2>
+            </motion.h2>
 
             {/* Descrição */}
-            <p
+            <motion.p
+              initial={shouldReduceMotion ? false : "hidden"}
+              whileInView={shouldReduceMotion ? undefined : "visible"}
+              viewport={{
+                once: true,
+                amount: 0.3,
+              }}
+              variants={slideUp}
+              transition={{
+                delay: shouldReduceMotion ? 0 : 0.1,
+              }}
               className="
                 mx-auto
                 mt-5
@@ -115,16 +151,28 @@ export function AboutCTA() {
             >
               Conte-nos o que precisa e descubra como a Zenda pode transformar o seu desafio numa
               solução digital.
-            </p>
+            </motion.p>
 
             {/* Ação */}
-            <div className="mt-8 flex justify-center">
+            <motion.div
+              initial={shouldReduceMotion ? false : "hidden"}
+              whileInView={shouldReduceMotion ? undefined : "visible"}
+              viewport={{
+                once: true,
+                amount: 0.3,
+              }}
+              variants={slideUp}
+              transition={{
+                delay: shouldReduceMotion ? 0 : 0.2,
+              }}
+              className="mt-8 flex justify-center"
+            >
               <ZButton variant="secondary" size="lg" rightIcon={<ArrowRight size={18} />}>
                 Falar com a Zenda
               </ZButton>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </ZContainer>
     </section>
   );

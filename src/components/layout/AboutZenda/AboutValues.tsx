@@ -1,6 +1,16 @@
 import { Eye, HeartHandshake, Lightbulb, Target, Users, Zap } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { ZContainer } from "@/components/common/ZContainer";
+
+import {
+  fadeIn,
+  slideLeft,
+  slideRight,
+  slideUp,
+  staggerContainer,
+  staggerItem,
+} from "@/animations";
 
 const values = [
   {
@@ -29,12 +39,24 @@ const values = [
 ];
 
 export function AboutValues() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="bg-slate-50 py-20 sm:py-24 lg:py-28">
       <ZContainer>
         {/* Cabeçalho */}
-        <div className="mx-auto max-w-2xl text-center">
-          <span
+        <motion.div
+          className="mx-auto max-w-2xl text-center"
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView={shouldReduceMotion ? undefined : "visible"}
+          viewport={{
+            once: true,
+            amount: 0.2,
+          }}
+          variants={staggerContainer}
+        >
+          <motion.span
+            variants={fadeIn}
             className="
               text-sm
               font-semibold
@@ -44,9 +66,10 @@ export function AboutValues() {
             "
           >
             O que nos orienta
-          </span>
+          </motion.span>
 
-          <h2
+          <motion.h2
+            variants={slideUp}
             className="
               mt-3
               text-3xl
@@ -61,9 +84,10 @@ export function AboutValues() {
           >
             Os princípios por trás
             <span className="text-[#0F4C81]"> da Zenda.</span>
-          </h2>
+          </motion.h2>
 
-          <p
+          <motion.p
+            variants={slideUp}
             className="
               mx-auto
               mt-5
@@ -78,8 +102,8 @@ export function AboutValues() {
           >
             A nossa forma de trabalhar é guiada por princípios que influenciam cada produto, projeto
             e relação que construímos.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Missão e Visão */}
         <div
@@ -92,7 +116,14 @@ export function AboutValues() {
           "
         >
           {/* Missão */}
-          <div
+          <motion.div
+            initial={shouldReduceMotion ? false : "hidden"}
+            whileInView={shouldReduceMotion ? undefined : "visible"}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
+            variants={slideRight}
             className="
               rounded-3xl
               border
@@ -103,7 +134,14 @@ export function AboutValues() {
               sm:p-10
             "
           >
-            <div
+            <motion.div
+              initial={shouldReduceMotion ? false : "hidden"}
+              whileInView={shouldReduceMotion ? undefined : "visible"}
+              viewport={{
+                once: true,
+                amount: 0.3,
+              }}
+              variants={fadeIn}
               className="
                 flex
                 h-12
@@ -116,7 +154,7 @@ export function AboutValues() {
               "
             >
               <Target size={22} />
-            </div>
+            </motion.div>
 
             <h3
               className="
@@ -140,10 +178,17 @@ export function AboutValues() {
               Desenvolver soluções tecnológicas simples, eficientes e acessíveis que ajudem empresas
               a melhorar a sua gestão, otimizar processos e crescer de forma sustentável.
             </p>
-          </div>
+          </motion.div>
 
           {/* Visão */}
-          <div
+          <motion.div
+            initial={shouldReduceMotion ? false : "hidden"}
+            whileInView={shouldReduceMotion ? undefined : "visible"}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
+            variants={slideLeft}
             className="
               rounded-3xl
               bg-[#0F4C81]
@@ -152,7 +197,14 @@ export function AboutValues() {
               sm:p-10
             "
           >
-            <div
+            <motion.div
+              initial={shouldReduceMotion ? false : "hidden"}
+              whileInView={shouldReduceMotion ? undefined : "visible"}
+              viewport={{
+                once: true,
+                amount: 0.3,
+              }}
+              variants={fadeIn}
               className="
                 flex
                 h-12
@@ -165,7 +217,7 @@ export function AboutValues() {
               "
             >
               <Eye size={22} />
-            </div>
+            </motion.div>
 
             <h3
               className="
@@ -189,11 +241,20 @@ export function AboutValues() {
               Tornar a Zenda uma referência em soluções tecnológicas em Angola, reconhecida pela
               inovação, qualidade e impacto positivo nos negócios.
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* Valores */}
-        <div className="mt-16">
+        <motion.div
+          className="mt-16"
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView={shouldReduceMotion ? undefined : "visible"}
+          viewport={{
+            once: true,
+            amount: 0.15,
+          }}
+          variants={slideUp}
+        >
           <div className="mb-8">
             <h3
               className="
@@ -209,7 +270,7 @@ export function AboutValues() {
             </h3>
           </div>
 
-          <div
+          <motion.div
             className="
               grid
               gap-px
@@ -223,16 +284,27 @@ export function AboutValues() {
 
               lg:grid-cols-4
             "
+            variants={staggerContainer}
+            initial={shouldReduceMotion ? false : "hidden"}
+            whileInView={shouldReduceMotion ? undefined : "visible"}
+            viewport={{
+              once: true,
+              amount: 0.1,
+            }}
           >
             {values.map((value) => {
               const Icon = value.icon;
 
               return (
-                <div
+                <motion.div
                   key={value.title}
+                  variants={staggerItem}
                   className="
                     bg-white
                     p-7
+                    transition-colors
+                    duration-300
+                    hover:bg-slate-50
 
                     sm:p-8
                   "
@@ -259,11 +331,11 @@ export function AboutValues() {
                   >
                     {value.description}
                   </p>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </ZContainer>
     </section>
   );

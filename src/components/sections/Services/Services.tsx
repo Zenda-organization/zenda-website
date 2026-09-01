@@ -1,8 +1,11 @@
+import { motion, useReducedMotion } from "motion/react";
 import { Code2, Globe2, Smartphone, Boxes, Lightbulb } from "lucide-react";
 
 import { ZContainer } from "@/components/common/ZContainer";
 
 import { ServiceCard } from "./ServiceCard";
+
+import { slideUp, staggerContainer } from "@/animations";
 
 const services = [
   {
@@ -43,6 +46,8 @@ const services = [
 ];
 
 export function Services() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section
       id="servicos"
@@ -56,8 +61,15 @@ export function Services() {
       "
     >
       <ZContainer>
-        {/* Cabeçalho */}
-        <div className="max-w-2xl">
+        <motion.div
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={{
+            once: true,
+            amount: 0.2,
+          }}
+          variants={slideUp}
+        >
           <span
             className="
               inline-flex
@@ -108,10 +120,9 @@ export function Services() {
             Desenvolvemos soluções digitais que simplificam processos, aumentam a eficiência e
             ajudam empresas a crescer de forma sustentável.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Serviços */}
-        <div
+        <motion.div
           className="
             mt-14
             grid
@@ -119,17 +130,25 @@ export function Services() {
             sm:grid-cols-2
             lg:grid-cols-3
           "
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={{
+            once: true,
+            amount: 0.1,
+          }}
+          variants={staggerContainer}
         >
           {services.map((service) => (
-            <ServiceCard
-              key={service.number}
-              number={service.number}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-            />
+            <motion.div key={service.number} variants={slideUp}>
+              <ServiceCard
+                number={service.number}
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </ZContainer>
     </section>
   );

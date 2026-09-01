@@ -1,6 +1,9 @@
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { ZContainer } from "@/components/common/ZContainer";
+
+import { slideLeft, slideRight, slideUp, staggerContainer } from "@/animations";
 
 const highlights = [
   "Soluções pensadas para necessidades reais",
@@ -9,6 +12,8 @@ const highlights = [
 ];
 
 export function AboutStory() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section
       id="quem-somos"
@@ -33,8 +38,20 @@ export function AboutStory() {
             lg:gap-20
           "
         >
-          {/* Conteúdo */}
-          <div className="max-w-xl">
+          {/* =========================================================
+              CONTEÚDO
+          ========================================================= */}
+          <motion.div
+            className="max-w-xl"
+            initial={shouldReduceMotion ? false : "hidden"}
+            whileInView={shouldReduceMotion ? undefined : "visible"}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
+            variants={slideRight}
+          >
+            {/* Eyebrow */}
             <span
               className="
                 text-sm
@@ -47,6 +64,7 @@ export function AboutStory() {
               Quem somos
             </span>
 
+            {/* Título */}
             <h2
               className="
                 mt-3
@@ -66,6 +84,7 @@ export function AboutStory() {
               <span className="text-[#0F4C81]">com propósito.</span>
             </h2>
 
+            {/* Primeiro parágrafo */}
             <p
               className="
                 mt-6
@@ -81,6 +100,7 @@ export function AboutStory() {
               simples, não mais complicados.
             </p>
 
+            {/* Segundo parágrafo */}
             <p
               className="
                 mt-4
@@ -96,16 +116,35 @@ export function AboutStory() {
               permitindo que as empresas tenham mais controlo, eficiência e capacidade para crescer.
             </p>
 
-            {/* Destaques */}
-            <div className="mt-8 space-y-4">
+            {/* =====================================================
+                DESTAQUES
+            ===================================================== */}
+            <motion.div
+              className="mt-8 space-y-4"
+              initial={shouldReduceMotion ? false : "hidden"}
+              whileInView={shouldReduceMotion ? undefined : "visible"}
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
+              variants={staggerContainer}
+            >
               {highlights.map((item) => (
-                <div key={item} className="flex items-center gap-3">
+                <motion.div key={item} variants={slideUp} className="flex items-center gap-3">
                   <CheckCircle2 size={20} className="shrink-0 text-[#0F4C81]" />
 
-                  <span className="text-sm font-medium text-slate-700">{item}</span>
-                </div>
+                  <span
+                    className="
+                      text-sm
+                      font-medium
+                      text-slate-700
+                    "
+                  >
+                    {item}
+                  </span>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             {/* Link */}
             <a
@@ -125,10 +164,19 @@ export function AboutStory() {
               Fale com a Zenda
               <ArrowUpRight size={17} />
             </a>
-          </div>
+          </motion.div>
 
-          {/* Destaque visual */}
-          <div
+          {/* =========================================================
+              DESTAQUE VISUAL
+          ========================================================= */}
+          <motion.div
+            initial={shouldReduceMotion ? false : "hidden"}
+            whileInView={shouldReduceMotion ? undefined : "visible"}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
+            variants={slideLeft}
             className="
               relative
               overflow-hidden
@@ -141,7 +189,7 @@ export function AboutStory() {
               lg:p-12
             "
           >
-            {/* Elementos decorativos */}
+            {/* Glow superior */}
             <div
               aria-hidden="true"
               className="
@@ -156,6 +204,7 @@ export function AboutStory() {
               "
             />
 
+            {/* Glow inferior */}
             <div
               aria-hidden="true"
               className="
@@ -170,7 +219,9 @@ export function AboutStory() {
               "
             />
 
+            {/* Conteúdo */}
             <div className="relative">
+              {/* Pequeno título */}
               <span
                 className="
                   text-sm
@@ -181,6 +232,7 @@ export function AboutStory() {
                 O nosso propósito
               </span>
 
+              {/* Título */}
               <h3
                 className="
                   mt-6
@@ -195,8 +247,10 @@ export function AboutStory() {
                 Tornar a tecnologia mais acessível, útil e transformadora para os negócios.
               </h3>
 
+              {/* Separador */}
               <div className="mt-10 h-px bg-white/15" />
 
+              {/* Descrição */}
               <p
                 className="
                   mt-6
@@ -213,12 +267,20 @@ export function AboutStory() {
               <div className="mt-10 flex items-center gap-3">
                 <div className="h-2 w-2 rounded-full bg-white" />
 
-                <span className="text-xs font-medium uppercase tracking-wider text-blue-100">
+                <span
+                  className="
+                    text-xs
+                    font-medium
+                    uppercase
+                    tracking-wider
+                    text-blue-100
+                  "
+                >
                   Tecnologia com propósito
                 </span>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </ZContainer>
     </section>

@@ -1,8 +1,13 @@
 import { ArrowDown } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { ZContainer } from "@/components/common/ZContainer";
 
+import { fadeIn, slideUp } from "@/animations";
+
 export function AboutHero() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section
       className="
@@ -38,9 +43,18 @@ export function AboutHero() {
       />
 
       <ZContainer>
-        <div className="mx-auto max-w-4xl text-center">
+        <motion.div
+          className="mx-auto max-w-4xl text-center"
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView={shouldReduceMotion ? undefined : "visible"}
+          viewport={{
+            once: true,
+            amount: 0.2,
+          }}
+        >
           {/* Eyebrow */}
-          <span
+          <motion.span
+            variants={fadeIn}
             className="
               inline-flex
               items-center
@@ -58,10 +72,11 @@ export function AboutHero() {
             "
           >
             Sobre a Zenda
-          </span>
+          </motion.span>
 
           {/* Título */}
-          <h1
+          <motion.h1
+            variants={slideUp}
             className="
               mt-6
               text-4xl
@@ -76,10 +91,11 @@ export function AboutHero() {
             "
           >
             Tecnologia criada para <span className="text-[#0F4C81]">fazer negócios avançarem.</span>
-          </h1>
+          </motion.h1>
 
           {/* Descrição */}
-          <p
+          <motion.p
+            variants={slideUp}
             className="
               mx-auto
               mt-6
@@ -95,10 +111,10 @@ export function AboutHero() {
             A Zenda é uma empresa de tecnologia focada no desenvolvimento de soluções digitais que
             simplificam processos, melhoram a gestão e ajudam empresas a crescer de forma mais
             eficiente.
-          </p>
+          </motion.p>
 
           {/* Navegação interna */}
-          <div className="mt-10 flex justify-center">
+          <motion.div variants={slideUp} className="mt-10 flex justify-center">
             <a
               href="#quem-somos"
               className="
@@ -115,8 +131,8 @@ export function AboutHero() {
               Conheça a nossa história
               <ArrowDown size={17} />
             </a>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </ZContainer>
     </section>
   );

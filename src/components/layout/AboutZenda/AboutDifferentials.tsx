@@ -1,6 +1,10 @@
 import { ArrowUpRight, Code2, Handshake, Layers3, TrendingUp } from "lucide-react";
 
+import { motion, useReducedMotion } from "motion/react";
+
 import { ZContainer } from "@/components/common/ZContainer";
+
+import { slideRight, staggerContainer, staggerItem } from "@/animations";
 
 const differentials = [
   {
@@ -34,6 +38,8 @@ const differentials = [
 ];
 
 export function AboutDifferentials() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="bg-slate-50 py-20 sm:py-24 lg:py-28">
       <ZContainer>
@@ -47,7 +53,16 @@ export function AboutDifferentials() {
           "
         >
           {/* Introdução */}
-          <div className="max-w-md">
+          <motion.div
+            className="max-w-md"
+            initial={shouldReduceMotion ? false : "hidden"}
+            whileInView={shouldReduceMotion ? undefined : "visible"}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
+            variants={slideRight}
+          >
             <span
               className="
                 text-sm
@@ -111,10 +126,10 @@ export function AboutDifferentials() {
               Falar com a nossa equipa
               <ArrowUpRight size={17} />
             </a>
-          </div>
+          </motion.div>
 
           {/* Diferenciais */}
-          <div
+          <motion.div
             className="
               grid
               overflow-hidden
@@ -125,13 +140,21 @@ export function AboutDifferentials() {
 
               sm:grid-cols-2
             "
+            initial={shouldReduceMotion ? false : "hidden"}
+            whileInView={shouldReduceMotion ? undefined : "visible"}
+            viewport={{
+              once: true,
+              amount: 0.15,
+            }}
+            variants={staggerContainer}
           >
             {differentials.map((item, index) => {
               const Icon = item.icon;
 
               return (
-                <div
+                <motion.div
                   key={item.number}
+                  variants={staggerItem}
                   className={`
                     group
                     relative
@@ -200,10 +223,10 @@ export function AboutDifferentials() {
                   >
                     {item.description}
                   </p>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </ZContainer>
     </section>

@@ -1,8 +1,10 @@
+import { motion, useReducedMotion } from "motion/react";
 import { Search, ClipboardList, Code2, Rocket, TrendingUp } from "lucide-react";
 
 import { ZContainer } from "@/components/common/ZContainer";
-
 import { ProcessStep } from "./ProcessStep";
+
+import { slideUp, staggerContainer } from "@/animations";
 
 const steps = [
   {
@@ -42,6 +44,8 @@ const steps = [
 ];
 
 export function Process() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section
       id="processo"
@@ -55,8 +59,16 @@ export function Process() {
       "
     >
       <ZContainer>
-        {/* Cabeçalho */}
-        <div className="mx-auto max-w-2xl text-center">
+        <motion.div
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={{
+            once: true,
+            amount: 0.2,
+          }}
+          variants={slideUp}
+          className="mx-auto max-w-2xl text-center"
+        >
           <span
             className="
               inline-flex
@@ -86,7 +98,6 @@ export function Process() {
               text-slate-950
               sm:text-4xl
               lg:text-5xl
-              lg:leading-[1.1]
             "
           >
             Do desafio à solução,
@@ -103,37 +114,41 @@ export function Process() {
               leading-7
               text-slate-600
               sm:text-lg
-              sm:leading-8
             "
           >
             Trabalhamos de forma estruturada para transformar necessidades reais em soluções
             digitais eficientes e sustentáveis.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Processo */}
-        <div
+        <motion.div
           className="
             mt-16
             grid
             gap-10
-
             sm:grid-cols-2
-
             lg:grid-cols-5
             lg:gap-6
           "
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={{
+            once: true,
+            amount: 0.1,
+          }}
+          variants={staggerContainer}
         >
           {steps.map((step) => (
-            <ProcessStep
-              key={step.number}
-              number={step.number}
-              icon={step.icon}
-              title={step.title}
-              description={step.description}
-            />
+            <motion.div key={step.number} variants={slideUp}>
+              <ProcessStep
+                number={step.number}
+                icon={step.icon}
+                title={step.title}
+                description={step.description}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </ZContainer>
     </section>
   );

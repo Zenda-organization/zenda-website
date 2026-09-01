@@ -54,13 +54,11 @@ export function IndustryCard({ industry, index }: IndustryCardProps) {
         p-6
         transition-all
         duration-300
-
         hover:-translate-y-1
         hover:border-slate-300
         hover:shadow-xl
       "
     >
-      {/* Glow */}
       <div
         aria-hidden="true"
         className="
@@ -76,12 +74,10 @@ export function IndustryCard({ industry, index }: IndustryCardProps) {
           blur-3xl
           transition-opacity
           duration-500
-
           group-hover:opacity-100
         "
       />
 
-      {/* Icon */}
       <div
         className="
           relative
@@ -95,7 +91,6 @@ export function IndustryCard({ industry, index }: IndustryCardProps) {
           text-slate-700
           transition-all
           duration-300
-
           group-hover:bg-primary
           group-hover:text-white
           group-hover:shadow-lg
@@ -104,7 +99,6 @@ export function IndustryCard({ industry, index }: IndustryCardProps) {
         <Icon size={22} strokeWidth={1.8} />
       </div>
 
-      {/* Content */}
       <div className="relative">
         <h3
           className="
@@ -129,7 +123,6 @@ export function IndustryCard({ industry, index }: IndustryCardProps) {
         </p>
       </div>
 
-      {/* Link visual */}
       <div
         className="
           relative
@@ -142,7 +135,6 @@ export function IndustryCard({ industry, index }: IndustryCardProps) {
           text-slate-500
           transition-colors
           duration-300
-
           group-hover:text-primary
         "
       >
@@ -152,7 +144,6 @@ export function IndustryCard({ industry, index }: IndustryCardProps) {
           className="
             transition-transform
             duration-300
-
             group-hover:-translate-y-0.5
             group-hover:translate-x-0.5
           "

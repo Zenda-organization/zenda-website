@@ -1,4 +1,8 @@
+import { motion, useReducedMotion } from "motion/react";
+
 import { Building2, GraduationCap, HeartPulse, ShoppingCart, Truck } from "lucide-react";
+
+import { fadeIn, staggerContainer } from "@/animations";
 
 const sectors = [
   {
@@ -24,13 +28,20 @@ const sectors = [
 ];
 
 export function HeroStats() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div className="border-t border-slate-200/70 py-8">
-      <div className="mb-6 text-center">
+      <motion.div
+        className="mb-6 text-center"
+        variants={fadeIn}
+        initial={shouldReduceMotion ? false : "hidden"}
+        animate={shouldReduceMotion ? undefined : "visible"}
+      >
         <p className="text-sm font-medium text-slate-500">Soluções para diferentes setores</p>
-      </div>
+      </motion.div>
 
-      <div
+      <motion.div
         className="
           grid
           grid-cols-2
@@ -43,13 +54,17 @@ export function HeroStats() {
           lg:justify-between
           lg:gap-6
         "
+        variants={staggerContainer}
+        initial={shouldReduceMotion ? false : "hidden"}
+        animate={shouldReduceMotion ? undefined : "visible"}
       >
         {sectors.map((sector) => {
           const Icon = sector.icon;
 
           return (
-            <div
+            <motion.div
               key={sector.label}
+              variants={fadeIn}
               className="
                 flex
                 items-center
@@ -77,10 +92,10 @@ export function HeroStats() {
               <Icon size={18} strokeWidth={1.8} />
 
               <span>{sector.label}</span>
-            </div>
+            </motion.div>
           );
         })}
-      </div>
+      </motion.div>
     </div>
   );
 }

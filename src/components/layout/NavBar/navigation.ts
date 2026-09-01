@@ -16,6 +16,10 @@ export const navigation = [
     href: "/produtos",
   },
   {
+    label: "Zenda ERP",
+    href: "/produtos/erp",
+  },
+  {
     label: "Setores",
     href: "/setores",
   },
