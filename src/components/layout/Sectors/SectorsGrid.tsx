@@ -1,7 +1,6 @@
 import { Building2, GraduationCap, HeartPulse, ShoppingCart, Truck } from "lucide-react";
 
 import { ZContainer } from "@/components/common/ZContainer";
-import { slideUp } from "@/animations";
 
 const sectors = [
   {
@@ -57,16 +56,13 @@ export function SectorsGrid() {
         >
           {sectors.map((sector, index) => {
             const Icon = sector.icon;
+
             const isFeatured = index === 0;
 
             return (
               <a
                 key={sector.id}
                 href={`#${sector.id}`}
-                {...slideUp}
-                style={{
-                  transitionDelay: `${index * 100}ms`,
-                }}
                 className={`
                   group
                   relative
@@ -87,6 +83,7 @@ export function SectorsGrid() {
                   ${isFeatured ? "lg:col-span-2 lg:row-span-2" : "lg:col-span-2"}
                 `}
               >
+                {/* Número */}
                 <span
                   className="
                     absolute
@@ -101,6 +98,7 @@ export function SectorsGrid() {
                   {sector.number}
                 </span>
 
+                {/* Icon */}
                 <div
                   className="
                     flex

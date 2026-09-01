@@ -2,7 +2,6 @@ import { ArrowRight, Boxes, ShoppingCart, Users } from "lucide-react";
 
 import { ZButton } from "@/components/common/ZButton";
 import { ZContainer } from "@/components/common/ZContainer";
-import { slideLeft, slideRight } from "@/animations";
 
 const features = [
   {
@@ -36,7 +35,8 @@ export function SectorCommerce() {
             lg:gap-20
           "
         >
-          <div className="max-w-xl" {...slideLeft}>
+          {/* Conteúdo */}
+          <div className="max-w-xl">
             <span
               className="
                 inline-flex
@@ -101,7 +101,7 @@ export function SectorCommerce() {
                 sm:grid-cols-3
               "
             >
-              {features.map((feature, index) => {
+              {features.map((feature) => {
                 const Icon = feature.icon;
 
                 return (
@@ -113,21 +113,31 @@ export function SectorCommerce() {
                       border-slate-200
                       bg-white
                       p-5
-                      transition-all
-                      duration-300
-
-                      hover:-translate-y-1
-                      hover:shadow-md
                     "
-                    style={{
-                      transitionDelay: `${index * 100}ms`,
-                    }}
                   >
                     <Icon size={19} className="text-[#0F4C81]" />
 
-                    <h3 className="mt-4 text-sm font-bold text-slate-950">{feature.title}</h3>
+                    <h3
+                      className="
+                        mt-4
+                        text-sm
+                        font-bold
+                        text-slate-950
+                      "
+                    >
+                      {feature.title}
+                    </h3>
 
-                    <p className="mt-2 text-xs leading-5 text-slate-600">{feature.description}</p>
+                    <p
+                      className="
+                        mt-2
+                        text-xs
+                        leading-5
+                        text-slate-600
+                      "
+                    >
+                      {feature.description}
+                    </p>
                   </div>
                 );
               })}
@@ -140,70 +150,84 @@ export function SectorCommerce() {
             </div>
           </div>
 
-          <div {...slideRight}>
+          {/* Visual */}
+          <div
+            className="
+              relative
+              rounded-3xl
+              border
+              border-slate-200
+              bg-slate-50
+              p-6
+
+              sm:p-8
+            "
+          >
             <div
               className="
-                relative
-                rounded-3xl
+                rounded-2xl
                 border
                 border-slate-200
-                bg-slate-50
+                bg-white
                 p-6
-
-                sm:p-8
+                shadow-sm
               "
             >
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs text-slate-500">Vendas</p>
+
+                  <p className="mt-1 text-2xl font-bold text-slate-950">1.248</p>
+                </div>
+
+                <span
+                  className="
+                    rounded-full
+                    bg-blue-50
+                    px-3
+                    py-1
+                    text-xs
+                    font-semibold
+                    text-[#0F4C81]
+                  "
+                >
+                  +18,4%
+                </span>
+              </div>
+
               <div
                 className="
-                  rounded-2xl
-                  border
-                  border-slate-200
-                  bg-white
-                  p-6
-                  shadow-sm
+                  mt-8
+                  flex
+                  h-36
+                  items-end
+                  gap-2
                 "
               >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-xs text-slate-500">Vendas</p>
-                    <p className="mt-1 text-2xl font-bold text-slate-950">1.248</p>
-                  </div>
-
-                  <span
+                {[35, 48, 42, 62, 55, 76, 68, 88].map((height, index) => (
+                  <div
+                    key={index}
                     className="
-                      rounded-full
-                      bg-blue-50
-                      px-3
-                      py-1
-                      text-xs
-                      font-semibold
-                      text-[#0F4C81]
-                    "
-                  >
-                    +18,4%
-                  </span>
+                        flex-1
+                        rounded-t-md
+                        bg-[#0F4C81]/15
+                      "
+                    style={{ height: `${height}%` }}
+                  />
+                ))}
+              </div>
+
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                <div className="rounded-xl bg-slate-50 p-4">
+                  <p className="text-xs text-slate-500">Produtos</p>
+
+                  <p className="mt-1 font-bold text-slate-950">856</p>
                 </div>
 
-                <div className="mt-8 flex h-36 items-end gap-2">
-                  {[35, 48, 42, 62, 55, 76, 68, 88].map((height, index) => (
-                    <div
-                      key={index}
-                      className="flex-1 rounded-t-md bg-[#0F4C81]/15"
-                      style={{ height: `${height}%` }}
-                    />
-                  ))}
-                </div>
+                <div className="rounded-xl bg-slate-50 p-4">
+                  <p className="text-xs text-slate-500">Clientes</p>
 
-                <div className="mt-6 grid grid-cols-2 gap-3">
-                  <div className="rounded-xl bg-slate-50 p-4">
-                    <p className="text-xs text-slate-500">Produtos</p>
-                    <p className="mt-1 font-bold text-slate-950">856</p>
-                  </div>
-
-                  <div className="rounded-xl bg-slate-50 p-4">
-                    <p className="text-xs text-slate-500">Clientes</p>
-                    <p className="mt-1 font-bold text-slate-950">324</p>
-                  </div>
+                  <p className="mt-1 font-bold text-slate-950">324</p>
                 </div>
               </div>
             </div>

@@ -1,28 +1,8 @@
 import { BarChart3, MapPinned, Package, Truck } from "lucide-react";
 
 import { ZContainer } from "@/components/common/ZContainer";
-import { slideLeft, slideRight } from "@/animations";
 
 export function SectorLogistics() {
-  const items = [
-    {
-      icon: Package,
-      title: "Encomendas",
-    },
-    {
-      icon: MapPinned,
-      title: "Operações",
-    },
-    {
-      icon: Truck,
-      title: "Transportes",
-    },
-    {
-      icon: BarChart3,
-      title: "Indicadores",
-    },
-  ];
-
   return (
     <section id="logistica" className="py-20 sm:py-24 lg:py-28">
       <ZContainer>
@@ -51,7 +31,8 @@ export function SectorLogistics() {
               lg:gap-20
             "
           >
-            <div {...slideLeft}>
+            {/* Conteúdo */}
+            <div>
               <span
                 className="
                   inline-flex
@@ -103,7 +84,24 @@ export function SectorLogistics() {
               </p>
 
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                {items.map((item) => {
+                {[
+                  {
+                    icon: Package,
+                    title: "Encomendas",
+                  },
+                  {
+                    icon: MapPinned,
+                    title: "Operações",
+                  },
+                  {
+                    icon: Truck,
+                    title: "Transportes",
+                  },
+                  {
+                    icon: BarChart3,
+                    title: "Indicadores",
+                  },
+                ].map((item) => {
                   const Icon = item.icon;
 
                   return (
@@ -119,11 +117,6 @@ export function SectorLogistics() {
                         bg-white
                         px-4
                         py-3
-                        transition-all
-                        duration-300
-
-                        hover:-translate-y-0.5
-                        hover:shadow-sm
                       "
                     >
                       <Icon size={17} className="text-[#0F4C81]" />
@@ -135,7 +128,8 @@ export function SectorLogistics() {
               </div>
             </div>
 
-            <div {...slideRight}>
+            {/* Visual */}
+            <div>
               <div
                 className="
                   rounded-2xl
