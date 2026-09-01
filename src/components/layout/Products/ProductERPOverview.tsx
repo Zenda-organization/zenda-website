@@ -1,6 +1,9 @@
 import { BarChart3, Database, Layers3, Workflow } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { ZContainer } from "@/components/common/ZContainer";
+
+import { slideUp, staggerContainer, staggerItem } from "@/animations";
 
 const points = [
   {
@@ -28,10 +31,22 @@ const points = [
 ];
 
 export function ProductERPOverview() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="bg-slate-50 py-20 sm:py-24 lg:py-28">
       <ZContainer>
-        <div className="mx-auto max-w-3xl text-center">
+        {/* Cabeçalho */}
+        <motion.div
+          className="mx-auto max-w-3xl text-center"
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView={shouldReduceMotion ? undefined : "visible"}
+          viewport={{
+            once: true,
+            amount: 0.2,
+          }}
+          variants={slideUp}
+        >
           <span
             className="
               text-sm
@@ -78,9 +93,10 @@ export function ProductERPOverview() {
             O Zenda ERP foi pensado para tornar a gestão empresarial mais simples, conectando os
             processos essenciais numa experiência única.
           </p>
-        </div>
+        </motion.div>
 
-        <div
+        {/* Benefícios */}
+        <motion.div
           className="
             mt-14
             grid
@@ -90,19 +106,34 @@ export function ProductERPOverview() {
 
             lg:grid-cols-4
           "
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView={shouldReduceMotion ? undefined : "visible"}
+          viewport={{
+            once: true,
+            amount: 0.1,
+          }}
+          variants={staggerContainer}
         >
           {points.map((point) => {
             const Icon = point.icon;
 
             return (
-              <div
+              <motion.div
                 key={point.title}
+                variants={staggerItem}
                 className="
+                  group
                   rounded-2xl
                   border
                   border-slate-200
                   bg-white
                   p-6
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:border-blue-100
+                  hover:shadow-lg
+                  hover:shadow-slate-200/40
                 "
               >
                 <div
@@ -115,6 +146,10 @@ export function ProductERPOverview() {
                     rounded-xl
                     bg-blue-50
                     text-[#0F4C81]
+                    transition-colors
+                    duration-300
+                    group-hover:bg-[#0F4C81]
+                    group-hover:text-white
                   "
                 >
                   <Icon size={19} />
@@ -140,10 +175,10 @@ export function ProductERPOverview() {
                 >
                   {point.description}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </ZContainer>
     </section>
   );

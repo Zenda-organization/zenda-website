@@ -1,6 +1,7 @@
 import { BarChart3, Building2, ClipboardCheck, PackageCheck } from "lucide-react";
 
 import { ZContainer } from "@/components/common/ZContainer";
+import { slideLeft, slideRight } from "@/animations";
 
 const items = [
   {
@@ -34,7 +35,7 @@ export function SectorConstruction() {
             lg:gap-20
           "
         >
-          <div>
+          <div {...slideLeft}>
             <span
               className="
                 inline-flex
@@ -85,7 +86,7 @@ export function SectorConstruction() {
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-3" {...slideRight}>
             {items.map((item, index) => {
               const Icon = item.icon;
 
@@ -98,6 +99,11 @@ export function SectorConstruction() {
                     border-slate-200
                     bg-white
                     p-6
+                    transition-all
+                    duration-300
+
+                    hover:-translate-y-1
+                    hover:shadow-md
 
                     ${index === 1 ? "sm:translate-y-6" : ""}
                   `}

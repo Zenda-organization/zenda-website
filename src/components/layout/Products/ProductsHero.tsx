@@ -1,10 +1,21 @@
 import { ArrowRight, Check } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { ZButton } from "@/components/common/ZButton";
 import { ZContainer } from "@/components/common/ZContainer";
 import { ERPMockup } from "@/components/common/ERPMockup";
 
+import { slideLeft, slideRight, staggerContainer, staggerItem } from "@/animations";
+
+const benefits = [
+  "Clientes e vendas centralizados",
+  "Stock e faturação integrados",
+  "Informação acessível num só lugar",
+];
+
 export function ProductsHero() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section
       className="
@@ -51,7 +62,17 @@ export function ProductsHero() {
           "
         >
           {/* Conteúdo */}
-          <div className="max-w-xl">
+          <motion.div
+            className="max-w-xl"
+            initial={shouldReduceMotion ? false : "hidden"}
+            whileInView={shouldReduceMotion ? undefined : "visible"}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
+            variants={slideRight}
+          >
+            {/* Badge */}
             <span
               className="
                 inline-flex
@@ -72,6 +93,7 @@ export function ProductsHero() {
               Produto
             </span>
 
+            {/* Título */}
             <h1
               className="
                 mt-6
@@ -91,6 +113,7 @@ export function ProductsHero() {
               <span className="text-[#0F4C81]">mais simples.</span>
             </h1>
 
+            {/* Descrição */}
             <p
               className="
                 mt-6
@@ -107,15 +130,21 @@ export function ProductsHero() {
               permitindo gerir o negócio com mais organização, controlo e eficiência.
             </p>
 
-            {/* Benefícios rápidos */}
-            <div className="mt-7 space-y-3">
-              {[
-                "Clientes e vendas centralizados",
-                "Stock e faturação integrados",
-                "Informação acessível num só lugar",
-              ].map((item) => (
-                <div
+            {/* Benefícios */}
+            <motion.div
+              className="mt-7 space-y-3"
+              initial={shouldReduceMotion ? false : "hidden"}
+              whileInView={shouldReduceMotion ? undefined : "visible"}
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
+              variants={staggerContainer}
+            >
+              {benefits.map((item) => (
+                <motion.div
                   key={item}
+                  variants={staggerItem}
                   className="
                     flex
                     items-center
@@ -142,26 +171,50 @@ export function ProductsHero() {
                   </span>
 
                   {item}
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             {/* CTA */}
-            <div className="mt-8 flex flex-wrap gap-4">
-              <ZButton variant="primary" size="lg" rightIcon={<ArrowRight size={18} />}>
-                Solicitar demonstração
-              </ZButton>
+            <motion.div
+              className="mt-8 flex flex-wrap gap-4"
+              initial={shouldReduceMotion ? false : "hidden"}
+              whileInView={shouldReduceMotion ? undefined : "visible"}
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
+              variants={staggerContainer}
+            >
+              <motion.div variants={staggerItem}>
+                <ZButton variant="primary" size="lg" rightIcon={<ArrowRight size={18} />}>
+                  Solicitar demonstração
+                </ZButton>
+              </motion.div>
 
-              <ZButton variant="ghost" size="lg">
-                Conhecer funcionalidades
-              </ZButton>
-            </div>
-          </div>
+              <motion.div variants={staggerItem}>
+                <a href="#funcionalidades">
+                  <ZButton variant="ghost" size="lg">
+                    Conhecer funcionalidades
+                  </ZButton>
+                </a>
+              </motion.div>
+            </motion.div>
+          </motion.div>
 
           {/* ERP */}
-          <div className="relative">
+          <motion.div
+            className="relative"
+            initial={shouldReduceMotion ? false : "hidden"}
+            whileInView={shouldReduceMotion ? undefined : "visible"}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
+            variants={slideLeft}
+          >
             <ERPMockup />
-          </div>
+          </motion.div>
         </div>
       </ZContainer>
     </section>

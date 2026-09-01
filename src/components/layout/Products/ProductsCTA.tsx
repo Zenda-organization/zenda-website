@@ -1,13 +1,18 @@
 import { ArrowRight } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { ZButton } from "@/components/common/ZButton";
 import { ZContainer } from "@/components/common/ZContainer";
 
+import { slideUp } from "@/animations";
+
 export function ProductsCTA() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="py-20 sm:py-24 lg:py-28">
       <ZContainer>
-        <div
+        <motion.div
           className="
             relative
             overflow-hidden
@@ -23,7 +28,15 @@ export function ProductsCTA() {
             lg:px-16
             lg:py-20
           "
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView={shouldReduceMotion ? undefined : "visible"}
+          viewport={{
+            once: true,
+            amount: 0.2,
+          }}
+          variants={slideUp}
         >
+          {/* Glow superior */}
           <div
             aria-hidden="true"
             className="
@@ -39,6 +52,7 @@ export function ProductsCTA() {
             "
           />
 
+          {/* Glow inferior */}
           <div
             aria-hidden="true"
             className="
@@ -107,7 +121,7 @@ export function ProductsCTA() {
               </ZButton>
             </div>
           </div>
-        </div>
+        </motion.div>
       </ZContainer>
     </section>
   );

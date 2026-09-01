@@ -7,11 +7,14 @@ import { SectorEducation } from "@/components/layout/Sectors/SectorEducation";
 import { SectorConstruction } from "@/components/layout/Sectors/SectorConstruction";
 import { SectorLogistics } from "@/components/layout/Sectors/SectorLogistics";
 import { SectorsCTA } from "@/components/layout/Sectors/SectorsCTA";
+import { SectorsOverview } from "@/components/layout/Sectors/SectorsOverview";
 
 export default function Sectors() {
   return (
     <>
       <SectorsHero />
+
+      <SectorsOverview />
 
       <SectorsGrid />
 

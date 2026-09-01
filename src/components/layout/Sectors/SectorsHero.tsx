@@ -1,6 +1,7 @@
 import { ArrowDown, Layers3 } from "lucide-react";
 
 import { ZContainer } from "@/components/common/ZContainer";
+import { fadeIn, slideUp } from "@/animations";
 
 export function SectorsHero() {
   return (
@@ -38,75 +39,79 @@ export function SectorsHero() {
 
       <ZContainer>
         <div className="mx-auto max-w-3xl text-center">
-          <span
-            className="
-              inline-flex
-              items-center
-              gap-2
-              text-sm
-              font-semibold
-              uppercase
-              tracking-[0.18em]
-              text-[#0F4C81]
-            "
-          >
-            <Layers3 size={16} />
-            Setores
-          </span>
+          <div {...fadeIn}>
+            <span
+              className="
+                inline-flex
+                items-center
+                gap-2
+                text-sm
+                font-semibold
+                uppercase
+                tracking-[0.18em]
+                text-[#0F4C81]
+              "
+            >
+              <Layers3 size={16} />
+              Setores
+            </span>
+          </div>
 
-          <h1
-            className="
-              mt-5
-              text-4xl
-              font-bold
-              tracking-[-0.04em]
-              text-slate-950
+          <div {...slideUp}>
+            <h1
+              className="
+                mt-5
+                text-4xl
+                font-bold
+                tracking-[-0.04em]
+                text-slate-950
 
-              sm:text-5xl
+                sm:text-5xl
 
-              lg:text-6xl
-              lg:leading-[1.05]
-            "
-          >
-            Tecnologia adaptada
-            <br />
-            <span className="text-[#0F4C81]">ao seu negócio.</span>
-          </h1>
+                lg:text-6xl
+                lg:leading-[1.05]
+              "
+            >
+              Tecnologia adaptada
+              <br />
+              <span className="text-[#0F4C81]">ao seu negócio.</span>
+            </h1>
 
-          <p
-            className="
-              mx-auto
-              mt-6
-              max-w-2xl
-              text-base
-              leading-7
-              text-slate-600
+            <p
+              className="
+                mx-auto
+                mt-6
+                max-w-2xl
+                text-base
+                leading-7
+                text-slate-600
 
-              sm:text-lg
-              sm:leading-8
-            "
-          >
-            Cada setor tem desafios diferentes. Desenvolvemos soluções digitais capazes de responder
-            às necessidades específicas de cada negócio.
-          </p>
+                sm:text-lg
+                sm:leading-8
+              "
+            >
+              Cada setor tem desafios diferentes. Desenvolvemos soluções digitais capazes de
+              responder às necessidades específicas de cada negócio.
+            </p>
 
-          <a
-            href="#setores"
-            className="
-              mt-8
-              inline-flex
-              items-center
-              gap-2
-              text-sm
-              font-semibold
-              text-[#0F4C81]
-              transition-colors
-              hover:text-blue-700
-            "
-          >
-            Explorar setores
-            <ArrowDown size={17} />
-          </a>
+            <a
+              href="#setores"
+              className="
+                mt-8
+                inline-flex
+                items-center
+                gap-2
+                text-sm
+                font-semibold
+                text-[#0F4C81]
+                transition-colors
+                hover:text-blue-700
+              "
+            >
+              Explorar setores
+              <ArrowDown size={17} />
+            </a>
+          </div>
         </div>
       </ZContainer>
     </section>

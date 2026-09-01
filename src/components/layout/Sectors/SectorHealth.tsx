@@ -1,6 +1,7 @@
 import { CalendarDays, ClipboardList, HeartPulse, Users } from "lucide-react";
 
 import { ZContainer } from "@/components/common/ZContainer";
+import { slideLeft, slideRight } from "@/animations";
 
 const features = [
   {
@@ -34,13 +35,7 @@ export function SectorHealth() {
             lg:gap-20
           "
         >
-          {/* Visual */}
-          <div
-            className="
-              order-2
-              lg:order-1
-            "
-          >
+          <div className="order-2 lg:order-1" {...slideLeft}>
             <div
               className="
                 rounded-3xl
@@ -71,7 +66,6 @@ export function SectorHealth() {
 
                 <div>
                   <p className="text-sm font-bold text-slate-950">Gestão de Saúde</p>
-
                   <p className="text-xs text-slate-500">Informação organizada</p>
                 </div>
               </div>
@@ -96,7 +90,6 @@ export function SectorHealth() {
                     "
                   >
                     <span className="text-sm text-slate-600">{label}</span>
-
                     <span className="text-sm font-bold text-slate-950">{value}</span>
                   </div>
                 ))}
@@ -104,8 +97,7 @@ export function SectorHealth() {
             </div>
           </div>
 
-          {/* Conteúdo */}
-          <div className="order-1 max-w-xl lg:order-2">
+          <div className="order-1 max-w-xl lg:order-2" {...slideRight}>
             <span
               className="
                 inline-flex

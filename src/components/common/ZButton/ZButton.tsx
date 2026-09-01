@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
 
-import { ZButtonProps } from "./ZButton.types";
+import type { ZButtonProps } from "./ZButton.types";
 
 const variants = {
   primary: "bg-[#0F4C81] hover:bg-[#0B3B64] text-white",
